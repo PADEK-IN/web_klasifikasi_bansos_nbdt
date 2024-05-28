@@ -1,9 +1,8 @@
-# from flask import request
-# from app.server import db
-# from app.server.model.mahasiswa import Mahasiswa
-# from app.server.model.dosen import Dosen
-# from app.server.helper import response
-# from app.server.helper.formating import dataMhs, detailMhs, dosen
+from flask import request
+from app.server import db
+from app.server.model.warga import Warga
+from app.server.helper import response
+from app.server.helper.formating import dataUser
 
 
 # def allData():

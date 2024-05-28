@@ -9,8 +9,8 @@ class User(db.Model):
     email = db.Column(db.String(70), index=True, unique=True, nullable=False)
     password = db.Column(db.String(250), nullable=False)
     role = db.Column(db.Enum('admin', 'user', name='role_enum'), nullable=False, default='user')
-    created_at = db.Column(db.DateTime, default=datetime.utcnow)
-    update_at = db.Column(db.DateTime, default=datetime.utcnow)
+    created_at = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
+    update_at = db.Column(db.DateTime, nullable=False, default=datetime.utcnow, onupdate=datetime.utcnow)
     
     
     # merepresentasikan Class User

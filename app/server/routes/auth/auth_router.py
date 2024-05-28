@@ -6,7 +6,7 @@ Auth = Blueprint('auth', __name__)
 
 @Auth.route('/')
 def index():
-    return render_template("index.html", title="Flask and Jinja")
+    return render_template("index.jinja", title="Flask and Jinja")
 
 @Auth.route('/register', methods=["GET", "POST"])
 def register():
@@ -17,7 +17,7 @@ def register():
         {"type": "password", "name":"confirmPassword", "text": "Confirm Password"}
     ]
     if request.method == "GET":
-        return render_template('pages/auth/register.html', title="Register", nameType=nameType)
+        return render_template('pages/auth/register.jinja', title="Register", nameType=nameType)
     else:
         auth_controller.register()
         return redirect("/login")
@@ -25,10 +25,10 @@ def register():
 @Auth.route("/login", methods=["GET", "POST"])
 def login():
     if request.method == "GET":
-        return render_template('pages/auth/login.html', title="Login")
+        return render_template('pages/auth/login.jinja', title="Login")
     else:
         auth_controller.login()
-        return render_template("index.html", title="Flask and Jinja")
+        return render_template("index.jinja", title="Flask and Jinja")
 
 @Auth.route("/logout", methods=["GET"])
 def logout():
