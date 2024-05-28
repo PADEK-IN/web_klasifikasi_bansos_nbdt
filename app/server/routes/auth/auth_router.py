@@ -4,10 +4,6 @@ from app.server.routes.auth import auth_controller
 # Auth = Blueprint('auth', __name__, template_folder="../../../views") <-- jika ingin menginisialisasi sendiri root folderya
 Auth = Blueprint('auth', __name__)
 
-@Auth.route('/')
-def index():
-    return render_template("index.jinja", title="Flask and Jinja")
-
 @Auth.route('/register', methods=["GET", "POST"])
 def register():
     nameType = [
@@ -18,17 +14,17 @@ def register():
     ]
     if request.method == "GET":
         return render_template('pages/auth/register.jinja', title="Register", nameType=nameType)
-    else:
+    if request.method == "POST":
         auth_controller.register()
         return redirect("/login")
 
 @Auth.route("/login", methods=["GET", "POST"])
 def login():
     if request.method == "GET":
-        return render_template('pages/auth/login.jinja', title="Login")
-    else:
+        return render_template('pages/auth/login.jinja')
+    if request.method == "POST":
         auth_controller.login()
-        return render_template("index.jinja", title="Flask and Jinja")
+        return redirect("/")
 
 @Auth.route("/logout", methods=["GET"])
 def logout():
