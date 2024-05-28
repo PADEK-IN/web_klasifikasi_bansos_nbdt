@@ -9,4 +9,9 @@ Warga = Blueprint('warga', __name__)
 def warga():
     df = pd.read_excel('dataset_nonlabel_test.xlsx')
     data = df.to_dict(orient='records')
-    return render_template("pages/warga/list.jinja", data=data)
+    
+    result = warga_controller.allData()
+    if not result:
+        return render_template("pages/error/500.jinja")
+    
+    return render_template("pages/warga/list.jinja", data=result)

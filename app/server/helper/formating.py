@@ -1,21 +1,10 @@
-def dataMhs(data):
+def dataWargaAll(data):
     array = []
 
     for i in data:
-        array.append(mhs(i))
+        array.append(dataWarga(i))
 
     return array
-
-def mhs(data):
-    data = {
-        "id": data.id,
-        "nim": data.nim,
-        "nama": data.nama,
-        "phone": data.phone,
-        "alamat": data.alamat,
-    }
-
-    return data
 
 def dataUser(data):
     data = {
@@ -38,7 +27,6 @@ def dataWarga(data):
         "kondisi_rumah":data.kondisi_rumah,
         "status_rumah":data.status_rumah,
         "jenis":data.jenis
-        
     }
     
     return data

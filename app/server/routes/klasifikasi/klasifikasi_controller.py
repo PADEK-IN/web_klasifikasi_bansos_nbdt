@@ -25,6 +25,7 @@ def predict(nik):
         materialRumah = wargaData["kondisi_rumah"]
         statusRumah = wargaData["status_rumah"]
         
+        
         if materialRumah == "bambu anyam":
             materialRumah = 1
         if materialRumah == "papan":
@@ -78,7 +79,9 @@ def predict(nik):
         
         print(new_prediction)
         print(result["status"])
-        
+
+        warga.jenis = result["status"]
+        db.session.commit()
         
         return result
     except Exception as e:

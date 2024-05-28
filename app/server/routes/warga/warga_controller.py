@@ -2,26 +2,25 @@ from flask import request
 from app.server import db
 from app.server.model.warga import Warga
 from app.server.helper import response
-from app.server.helper.formating import dataUser
+from app.server.helper.formating import dataWargaAll
 
 import numpy as np
 import pandas as pd
 
 
-# def allData():
-#     try:
-#         data = Mahasiswa.query.all()
+def allData():
+    try:
+        data = Warga.query.all()
 
-#         if not data:
-#             return response.badReq([], "Data not Found")
+        if not data:
+            return response.badReq([], "Data not Found")
 
-#         result = dataMhs(data)
+        result = dataWargaAll(data)
 
-#         return result
-#         # return response.success(result, "Response Success")
-#     except Exception as e:
-#         print(e)
-#         return response.serverError()
+        return result
+    except Exception as e:
+        print(e)
+        return False
 
 
 # def detail(id):
