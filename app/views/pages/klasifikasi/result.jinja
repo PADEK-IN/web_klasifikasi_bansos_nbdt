@@ -12,12 +12,21 @@
                 </div>
             </div>
         </div>
-        <div>
-            <h3>{{ data.jenis | upper }}</h3>
-            <h3>{{data.nama | capitalize}}</h3>
-            <p>Data kamu sedang di proses, harap menunggu yaa....</p>
+        <div class="text-center">
+            {% if data.status == "pending" %}
+                <h3 class="mt-4">Pending</h3>
+                <p>Hi {{data.nama | capitalize}}, mohon bersabar ya. Data kamu sedang di proses, harap menunggu yaa....</p>
+            {% elif data.status == "tidak layak" %}
+                <h1 class="mt-4">Selamat</h1>
+                <h3 class="mt-4">Bantuan {{ data.status }}</h3>
+                <p class="p-0 m-0">Hi {{data.nama | capitalize}}, dengan berat hati kami mohon maaf karena data kamu tervalidasi sebagai bukan penerima manfaat.</p>
+            {% else %}
+                <h1 class="mt-4">Selamat</h1>
+                <h3 class="mt-4">Bantuan {{ data.status }}</h3>
+                <p class="p-0 m-0">Hi {{data.nama | capitalize}}, alhamdulillah kami ucapkan selamat, data kamu tervalidasi sebagai penerima manfaat.</p>
+                <p class="p-0 m-0">Untuk penyaluran mohon ditunggu ya, semoga bermanfaat, terima kasih.</p>
+            {% endif %}
         </div>
-         <div class="center"><button class="main_bt" onclick="history.back()">Kembali</button></div
     </div>
 </div>
 <!-- end dashboard inner -->

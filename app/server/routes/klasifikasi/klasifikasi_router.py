@@ -1,5 +1,7 @@
-from flask import Blueprint, render_template, request, redirect, url_for
+from flask import Blueprint, render_template, request, redirect
 from app.server.routes.klasifikasi import klasifikasi_controller
+from app.server.helper import hash
+
 
 Klasifikasi = Blueprint('klasifikasi', __name__)
 
@@ -12,19 +14,19 @@ def validasi():
         if not res:
             return render_template("pages/error/500.jinja", message="Maaf, server error - gagal menyimpan data")
         nik = request.form.get("nik")
-        # nik = "1571072411000024"
-        dataBaru = klasifikasi_controller.getOne(nik)
-        print(dataBaru)
-        print(dataBaru["nama"])
-        return redirect(url_for('result', data=dataBaru))
+        encrypted_nik = hash.encrypt_nik(nik)
+        return redirect(f'/klasifikasi/result/{encrypted_nik}')
     else:
         return render_template("pages/error/400.jinja")
 
-@Klasifikasi.route('/klasifikasi/result')
-def result():
-    defaultData = {"jenis": "pending"}
-    data = request.args.get('data', default=defaultData)
-    return render_template("pages/klasifikasi/result.jinja", data=data)
+@Klasifikasi.route('/klasifikasi/result/<id>')
+def result(id):
+    decrypted_nik = hash.decrypt_nik(id)
+    predict = klasifikasi_controller.predict(decrypted_nik)  
+    if not predict:
+        return render_template("pages/error/500.jinja", message="Maaf, server error - gagal menyimpan data")
+    
+    return render_template("pages/klasifikasi/result.jinja", data=predict)
 
 @Klasifikasi.route('/klasifikasi/report/training')
 def reportnb():

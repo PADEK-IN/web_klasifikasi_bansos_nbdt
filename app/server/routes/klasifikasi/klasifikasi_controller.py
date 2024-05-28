@@ -16,11 +16,71 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.feature_selection import SelectKBest, f_classif
 from sklearn.metrics import accuracy_score, classification_report, confusion_matrix
 
-def getOne(nik):
+def predict(nik):
     try:
         warga = Warga.query.filter_by(nik=nik).first()
-        data = dataWarga(warga)
-        return data
+        wargaData = dataWarga(warga)
+        penghasilan = wargaData["penghasilan"]
+        tanggungan = wargaData["tanggungan"]
+        materialRumah = wargaData["kondisi_rumah"]
+        statusRumah = wargaData["status_rumah"]
+        
+        if materialRumah == "bambu anyam":
+            materialRumah = 1
+        if materialRumah == "papan":
+            materialRumah = 2
+        if materialRumah == "batu semen":
+            materialRumah = 3
+        if materialRumah == "batu permanen":
+            materialRumah = 4
+        
+        if statusRumah == "sewa":
+            statusRumah = 1
+        if statusRumah == "milik sendiri":
+            statusRumah = 2
+        
+        # Train model
+        data = pd.read_excel('dataset_nonlabel_test.xlsx')
+        scaler = StandardScaler()
+        data['penghasilan'] = scaler.fit_transform(data[['penghasilan']])
+        X = data[['penghasilan', 'tanggungan', 'kondisi_rumah', 'status_rumah']]
+        y = data['jenis']
+        selector = SelectKBest(f_classif, k='all')
+        X_selected = selector.fit_transform(X, y)
+        X_train, X_test, y_train, y_test = train_test_split(X_selected, y, test_size=0.2, random_state=42)
+        model = GaussianNB()
+        model.fit(X_train, y_train)
+        
+        #data Baru
+        new_data = np.array([[penghasilan, tanggungan, materialRumah, statusRumah]])
+        # Membuat DataFrame
+        df = pd.DataFrame(new_data, columns=['penghasilan', 'tanggungan', 'kondisi_rumah', 'status_rumah'])
+        # Standarisasi nilai penghasilan
+        df['penghasilan'] = df['penghasilan'].astype(int)
+        scaler = StandardScaler()
+        df['penghasilan'] = scaler.fit_transform(df[['penghasilan']])
+        Z = df[['penghasilan', 'tanggungan', 'kondisi_rumah', 'status_rumah']]
+        # Memprediksi kelas untuk data baru
+        print(Z["penghasilan"])
+        new_prediction = model.predict(Z)
+        result={"status": "pending", "nama": wargaData["nama"]}
+        print(new_prediction)
+        if new_prediction[0] == 1:
+            result["status"]="Miskin Extreme"
+        elif new_prediction[0] == 0:
+            result["status"]="CBP"
+        elif new_prediction[0] == 2:
+            result["status"]="PKH"
+        elif new_prediction[0] == 3:
+            result["status"]="Tidak Layak"
+        else:
+            return False
+        
+        print(new_prediction)
+        print(result["status"])
+        
+        
+        return result
     except Exception as e:
         print(e)
         return False
@@ -59,7 +119,7 @@ def create():
 
 def naiveBayesReport():
     try:
-       # Import data dari CSV
+        #Import data dari CSV
         data = pd.read_excel('dataset_nonlabel_test.xlsx')
 
         # Standarisasi nilai penghasilan
