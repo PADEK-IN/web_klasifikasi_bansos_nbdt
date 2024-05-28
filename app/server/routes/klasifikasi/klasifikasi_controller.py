@@ -2,6 +2,7 @@
 from flask import request
 from app.server import db
 from app.server.model.warga import Warga
+from app.server.helper.formating import dataWarga
 
 import numpy as np
 import pandas as pd
@@ -15,6 +16,14 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.feature_selection import SelectKBest, f_classif
 from sklearn.metrics import accuracy_score, classification_report, confusion_matrix
 
+def getOne(nik):
+    try:
+        warga = Warga.query.filter_by(nik=nik).first()
+        data = dataWarga(warga)
+        return data
+    except Exception as e:
+        print(e)
+        return False
 
 def create():
     try:
@@ -27,7 +36,6 @@ def create():
         tanggungan = request.form.get("tanggungan")
         kondisi_rumah = request.form.get("kondisi_rumah")
         status_rumah = request.form.get("status_rumah")
-        jenis = request.form.get("jenis")
         
         warga = Warga(
             nik=nik,
@@ -38,15 +46,13 @@ def create():
             penghasilan=penghasilan,
             tanggungan=tanggungan,
             kondisi_rumah=kondisi_rumah,
-            status_rumah=status_rumah,
-            jenis=jenis
+            status_rumah=status_rumah
         )
 
         db.session.add(warga)
         db.session.commit()
 
         return True
-
     except Exception as e:
         print(e)
         return False

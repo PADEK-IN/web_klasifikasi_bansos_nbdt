@@ -1,5 +1,24 @@
 {% extends "layout/main.jinja" %}
 
 {% block main %}
-<div>Ini Form</div>
+<!-- dashboard inner -->
+
+<div class="midde_cont">
+    <div class="container-fluid">
+        <div class="row column_title">
+            <div class="col-md-12">
+                <div class="page_title">
+                    <h2>Hasil Status Bantuan</h2>
+                </div>
+            </div>
+        </div>
+        <div>
+            <h3>{{ data.jenis | upper }}</h3>
+            <h3>{{data.nama | capitalize}}</h3>
+            <p>Data kamu sedang di proses, harap menunggu yaa....</p>
+        </div>
+         <div class="center"><button class="main_bt" onclick="history.back()">Kembali</button></div
+    </div>
+</div>
+<!-- end dashboard inner -->
 {% endblock main %}

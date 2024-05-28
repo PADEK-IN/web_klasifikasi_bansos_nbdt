@@ -1,5 +1,85 @@
 {% extends "layout/main.jinja" %}
 
 {% block main %}
-<div>Ini Form</div>
+<!-- dashboard inner -->
+
+<div class="midde_cont">
+    <div class="container-fluid">
+        <div class="row column_title">
+            <div class="col-md-12">
+                <div class="page_title">
+                    <h2>Data Baru Warga</h2>
+                </div>
+            </div>
+        </div>
+        <form class="mt-2" action="/klasifikasi/prediksi", method="POST">
+            <div class="form-group row">
+                <label for="nik" class="col-sm-2 col-form-label">NIK</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" name="nik" placeholder="Nomor Induk Kependudukan">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="nama" class="col-sm-2 col-form-label">Nama</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" name="nama" placeholder="Nama Warga">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="alamat" class="col-sm-2 col-form-label">Alamat</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" name="alamat" placeholder="Alamat Warga">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="no_rt" class="col-sm-2 col-form-label">No RT</label>
+                <div class="col-sm-10">
+                    <input type="number" class="form-control" name="no_rt" placeholder="No RT">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="pekerjaan" class="col-sm-2 col-form-label">Pekerjaan</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" name="pekerjaan" placeholder="Pekerjaan">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="penghasilan" class="col-sm-2 col-form-label">Penghasilan</label>
+                <div class="col-sm-10">
+                    <input type="number" class="form-control" name="penghasilan" placeholder="Penghasilan">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="tanggungan" class="col-sm-2 col-form-label">Tanggungan</label>
+                <div class="col-sm-10">
+                    <input type="number" class="form-control" name="tanggungan" placeholder="Tanggungan">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="kondisi_rumah" class="col-sm-2 col-form-label">Kondisi Rumah</label>
+                <div class="col-sm-10">
+                    <select name="kondisi_rumah" class="form-control custom-select">
+                        <option selected disabled>Pilih Kondisi Rumah</option>
+                        <option value="bambu anyam">Bambu Anyam</option>
+                        <option value="papan">Papan</option>
+                        <option value="batu semen">Batu Semen</option>
+                        <option value="batu permanen">Batu Permanen</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="status_rumah" class="col-sm-2 col-form-label">Status Rumah</label>
+                <div class="col-sm-10">
+                    <select name="status_rumah" class="form-control custom-select">
+                        <option selected disabled>Pilih Status Rumah</option>
+                        <option value="sewa">Sewa</option>
+                        <option value="milik sendiri">Milik Sendiri</option>
+                    </select>
+                </div>
+            </div>
+            <button type="submit" class="main_bt mt-4">Prediksi</button>
+        </form>
+    </div>
+</div>
+<!-- end dashboard inner -->
 {% endblock main %}
