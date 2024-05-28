@@ -1,4 +1,13 @@
-{% include "components/head.jinja" %}
+{% extends "layout/admin.jinja" %}
+
+{% block admin %}
+    <div class="text-center mt-10">
+        <h1 class="text-3xl font-bold mb-2 mt-2">{{message}}</h1>
+        <img class="mx-auto" width="250px" src="{{ url_for('static', filename='images/flask.png')}}">
+    </div>
+{% endblock admin %}
+
+{# {% include "components/head.jinja" %}
 {% include "components/nav.jinja" %}
 
 <div class="text-center mt-10">
@@ -6,4 +15,4 @@
     <img class="mx-auto" width="250px" src="{{ url_for('static', filename='images/flask.png')}}">
 </div>
 
-{% include "components/foot.jinja" %}
+{% include "components/foot.jinja" %} #}
