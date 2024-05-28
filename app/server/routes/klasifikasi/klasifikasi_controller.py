@@ -1,12 +1,16 @@
+# import os
 from flask import request
 from app.server import db
 from app.server.model.warga import Warga
 
 import numpy as np
 import pandas as pd
+# import matplotlib.pyplot as plt
+# from sklearn import tree
 from sklearn.model_selection import train_test_split, cross_val_score
 from sklearn.naive_bayes import GaussianNB
 from sklearn.tree import DecisionTreeClassifier
+
 from sklearn.preprocessing import StandardScaler
 from sklearn.feature_selection import SelectKBest, f_classif
 from sklearn.metrics import accuracy_score, classification_report, confusion_matrix
@@ -90,11 +94,11 @@ def naiveBayesReport():
         cvMean = np.mean(cv_scores) * 100
         
         result = {
-            "acc": acc,
+            "acc": round(acc, 1),
             "classReport": classReport,
             "confMatrix": confMatrix,
             "cv": cv_scores,
-            "cvMean": cvMean
+            "cvMean": round(cvMean, 1)
         }
         
         return result
@@ -143,7 +147,8 @@ def decisionTreeReport():
         acc = accuracy * 100
 
         # Menampilkan laporan klasifikasi
-        classReport = classification_report(y_test, y_pred, output_dict=True)
+        # classReport = classification_report(y_test, y_pred, output_dict=True)
+        classReport = classification_report(y_test, y_pred)
 
         # Menampilkan matriks kebingungan
         confMatrix = confusion_matrix(y_test, y_pred)
@@ -153,12 +158,20 @@ def decisionTreeReport():
         cvMean = np.mean(cv_scores) * 100
         
         result = {
-            "acc": acc,
+            "acc": round(acc, 1),
             "classReport": classReport,
             "confMatrix": confMatrix,
             "cv": cv_scores,
-            "cvMean": cvMean
+            "cvMean": round(cvMean, 1)
         }
+        
+        # # gambar belum berhasil
+        # plt.rcParams['figure.dpi'] = 85
+        # plt.subplots(figsize=(15,15))
+        # tree.plot_tree(model, fontsize=10)
+        # image_path = os.path.join('public', 'images', 'tree_plot.png')
+        # plt.savefig(image_path)
+        # plt.close()
         
         return result
     except Exception as e:

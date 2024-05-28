@@ -21,7 +21,4 @@ def result():
 def reportnb():
     dataNb = klasifikasi_controller.naiveBayesReport()
     dataDt = klasifikasi_controller.decisionTreeReport()
-    print(dataNb)
-    print(dataDt)
-    print(dataNb["acc"])
-    return render_template("pages/klasifikasi/report.jinja", data=dataNb["classReport"])
+    return render_template("pages/klasifikasi/report.jinja", nb=dataNb, dt=dataDt)
