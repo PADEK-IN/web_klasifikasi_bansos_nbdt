@@ -1,0 +1,11 @@
+{% include "components/head.html" %}
+{% include "components/nav.html" %}
+
+<div class="alert alert-danger flex flex-col items-center gap-5" role="alert">
+    <h4 class="alert-heading font-bold text-2xl">400 Bad Request</h4>
+    <img src="{{ url_for('static',filename='images/sorry.gif')}}" alt="error-images" width="15%">
+    <p class="font-bold text-lg">{{ message | default("Bad Request") }}</p>
+    <button class="mt-5 p-2 text center rounded-lg bg-gray-500 text-white" onclick="history.back()">Kembali</button>
+</div>
+
+{% include "components/foot.html" %}

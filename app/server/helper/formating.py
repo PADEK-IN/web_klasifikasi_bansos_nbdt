@@ -1,36 +1,3 @@
-def dataDosen(datas):
-    array = []
-
-    for i in datas:
-        array.append(dosen(i))
-
-    return array
-
-def dosen(data):
-    data = {
-        "id": data.id,
-        "nidn": data.nidn,
-        "nama": data.nama,
-        "phone": data.phone,
-        "alamat": data.alamat,
-        "gambar": data.gambar
-    }
-
-    return data
-
-def detailDosen(dosen, mhs):
-    data = {
-        "id": dosen.id,
-        "nidn": dosen.nidn,
-        "nama": dosen.nama,
-        "phone": dosen.phone,
-        "alamat": dosen.alamat,
-        "gambar": dosen.gambar,
-        "mahasiswa": mhs,
-    }
-
-    return data
-
 def dataMhs(data):
     array = []
 

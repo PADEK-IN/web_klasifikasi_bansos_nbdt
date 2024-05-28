@@ -8,7 +8,7 @@ class User(db.Model):
     name = db.Column(db.String(70), nullable=False)
     email = db.Column(db.String(70), index=True, unique=True, nullable=False)
     password = db.Column(db.String(250), nullable=False)
-    level = db.Column(db.Integer, nullable=False, default=1)
+    role = db.Column(db.Enum('admin', 'user', name='role_enum'), nullable=False, default='user')
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
     update_at = db.Column(db.DateTime, default=datetime.utcnow)
     
