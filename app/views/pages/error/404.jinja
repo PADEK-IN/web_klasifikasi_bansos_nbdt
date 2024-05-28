@@ -1,11 +1,19 @@
-{% include "components/head.jinja" %}
-{% include "components/nav.jinja" %}
+{% extends "layout/main.jinja" %}
 
-<div class="alert alert-danger flex flex-col items-center gap-5" role="alert">
-    <h4 class="alert-heading font-bold text-2xl">404 Not Found</h4>
-    <img src="{{ url_for('static',filename='images/sorry.gif')}}" alt="error-images" width="15%">
-    <p class="font-bold text-lg">{{ message | default("URL Not Found") }}</p>
-    <button class="mt-5 p-2 text center rounded-lg bg-gray-500 text-white" onclick="history.back()">Kembali</button>
+{% block main %}  
+
+<div class="center verticle_center full_height">
+    <div class="error_page">
+        <div class="center">
+            <div class="error_icon">
+                <img class="img-responsive" src="{{ url_for('static',filename='images/sorry.gif')}}" alt="error-img">
+            </div>
+        </div>
+        <br>
+        <h3>PAGE NOT FOUND !</h3>
+        <P>{{ message | default("Sorry, URL Not Found") }}</P>
+        <div class="center"><button class="main_bt" onclick="history.back()">Kembali</button></div>
+    </div>
 </div>
 
-{% include "components/foot.jinja" %}
+{% endblock main %}
