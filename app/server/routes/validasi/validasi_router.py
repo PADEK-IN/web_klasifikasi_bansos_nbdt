@@ -17,9 +17,11 @@ def validasi():
 def result():
     return render_template("pages/validasi/result.jinja")
 
-@Validasi.route('/report/training/naive-bayes')
+@Validasi.route('/report/training')
 def reportnb():
-    data = validasi_controller.naiveBayesTest()
-    print(data)
-    print(data["acc"])
-    return render_template("pages/validasi/report_nb.jinja", akurasi=data)
+    dataNb = validasi_controller.naiveBayesReport()
+    dataDt = validasi_controller.decisionTreeReport()
+    print(dataNb)
+    print(dataDt)
+    print(dataNb["acc"])
+    return render_template("pages/validasi/report_nb.jinja")
