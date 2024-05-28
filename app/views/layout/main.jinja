@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+   <!-- Head  -->
+   {% include "components/head.jinja" %}
+   <!-- end head --> 
+   <body class="dashboard dashboard_1">
+      <div class="full_container">
+       <div class="inner_container">
+        <!-- Sidebar  -->
+        {% include "components/sidebar.jinja" %}        
+        <!-- end sidebar -->
+        <!-- right content -->
+        <div id="content">
+         <!-- topbar -->
+         {% include "components/navbar.jinja" %}        
+         <!-- end topbar -->
+         <!-- Content  -->
+         {% block main %}
+         {% endblock main %}
+         <!-- end content -->
+
+        </div>
+       </div>
+      </div>
+      <!-- Scripts -->
+      {% include "components/scripts.jinja" %}
+      <!-- end scripts -->
+      
+   </body>
+</html>
