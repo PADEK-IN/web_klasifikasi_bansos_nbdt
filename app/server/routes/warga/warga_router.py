@@ -1,12 +1,12 @@
 from flask import Blueprint, request, render_template, redirect
+import pandas as pd
 from app.server.routes.warga import warga_controller
 
 Warga = Blueprint('warga', __name__)
 
 @Warga.route("/")
-def user():
-    if request.method == "GET":
-        # mhs = MhsCtrl.allData()
-        return render_template("pages/warga/list.jinja")
-    else:
-        return render_template("pages/error/400.jinja")
+
+def warga():
+    df = pd.read_excel('dataset_nonlabel_test.xlsx')
+    data = df.to_dict(orient='records')
+    return render_template("pages/warga/list.jinja", data=data)

@@ -24,51 +24,19 @@
                 <table id="example" class="table table-inbox table-hover table-striped text-center" style="width:100%">
                       <thead class="bg-dark text-white text-center">
                         <tr>
-                            <th>No</th>
-                            <th>NIK</th>
-                            <th>Nama</th>
-                            <th>Alamat</th>
-                            <th>RT</th>
-                            <th>Pekerjaan</th>
-                            <th>Penghasilan</th>
-                            <th>Tanggungan</th>
-                            <th>Kondisi Rumah</th>
-                            <th>Status Rumah</th>
-                            <th>Jenis Bantuan</th>
+                            {% for column in data[0].keys() %}
+                                <th>{{ column }}</th>
+                            {% endfor %}
                         </tr>
                       </thead>
                       <tbody>
-                        {% set data = [
-                            {
-                                "nik":  4326782,
-                                "name": "Anna Bayudi",
-                                "address": "Jln. Bandarnegara",
-                                "category_id": 5,
-                                "business_type": "Ternak Lele",
-                                "amount": "Rp. 4.000.000",
-                                "period": 11,
-                                "collateral": "Bambu",
-                                "ownership": "Milik Sendiri",
-                                "status": "PHK"
-                            }
-                        ] %}
-                        {% for i in range(20) %}
-                          {% for item in data %}
-                            <tr>
-                                <td>{{ i + 1 }}</td>
-                                <td>{{ item.nik }}</td>
-                                <td>{{ item.name }}</td>
-                                <td>{{ item.address }}</td>
-                                <td>{{ item.category_id }}</td>
-                                <td>{{ item.business_type }}</td>
-                                <td>{{ item.amount }}</td>
-                                <td>{{ item.period }}</td>
-                                <td>{{ item.collateral }}</td>
-                                <td>{{ item.ownership }}</td>
-                                <td>{{ item.status }}</td>
-                            </tr>
+                        {% for row in data %}
+                          <tr>
+                              {% for column in row.values() %}
+                                  <td>{{ column }}</td>
+                              {% endfor %}
+                          </tr>
                           {% endfor %}
-                        {% endfor %}
                       </tbody>
                   </table>
                 </div>
