@@ -6,12 +6,12 @@ Validasi = Blueprint('validasi', __name__)
 @Validasi.route('/validasi', methods=["GET", "POST"])
 def validasi():
     if request.method == "GET":
-        return render_template("pages/validasi/form.html")
+        return render_template("pages/validasi/form.jinja")
     elif request.method == "POST":
         return redirect('/validasi/result')
     else:
-        return render_template("pages/error/400.html")
+        return render_template("pages/error/400.jinja")
 
 @Validasi.route('/validasi/result')
 def result():
-    return render_template("pages/validasi/result.html")
+    return render_template("pages/validasi/result.jinja")

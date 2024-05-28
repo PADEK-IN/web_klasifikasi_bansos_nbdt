@@ -7,12 +7,12 @@ Warga = Blueprint('warga', __name__)
 def user():
     if request.method == "GET":
         # mhs = MhsCtrl.allData()
-        return render_template("pages/warga/list.html")
+        return render_template("pages/warga/list.jinja")
     elif request.method == "POST":
         # MhsCtrl.create()
         return redirect('/warga')
     else:
-        return render_template("pages/error/400.html")
+        return render_template("pages/error/400.jinja")
     
 # @Warga.route("/user/add", methods=["GET"])
 # def addMahasiswa():
@@ -24,14 +24,14 @@ def user():
 #         #     {"type": "text", "name": "alamat", "text": "Alamat"},
 #         # ]
 #         # dosens = DosenCtrl.allData()
-#         return render_template("pages/user/add.html")
+#         return render_template("pages/user/add.jinja")
 #     else:
-#         return render_template("pages/error/400.html")
+#         return render_template("pages/error/400.jinja")
     
 # @Warga.route("/user/<id>", methods=["GET"])
 # def detailMhs(id):
 #     # MhsCtrl.detail(id)
-#     return render_template("pages/user/detail.html")
+#     return render_template("pages/user/detail.jinja")
     
 # @Warga.route("/user/edit/<id>", methods=["GET", "POST"])
 # def editMhs(id):
@@ -40,7 +40,7 @@ def user():
 #     elif request.method == "POST":
 #         return MhsCtrl.edit(id)
 #     else:
-#         return render_template("pages/error/400.html")
+#         return render_template("pages/error/400.jinja")
     
 # @Warga.route("/user/delete/<id>", methods=["GET"])
 # def deleteMhs(id):

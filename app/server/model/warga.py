@@ -1,3 +1,4 @@
+from datetime import datetime
 from app.server import db
 
 class Warga(db.Model):
@@ -12,6 +13,8 @@ class Warga(db.Model):
     kondisi_rumah = db.Column(db.Enum('Bambu Anyam', 'Papan', 'Batu Semen', 'Batu Permanen', name='role_enum'), nullable=False, default='Batu Permanen')
     status_rumah = db.Column(db.Enum('Sewa', 'Milik Sendiri', name='role_enum'), nullable=False, default='Sewa')
     jenis = db.Column(db.Enum('Miskin Extreme', 'PKH', 'CBP', 'Tidak Layak', 'Pending', name='role_enum'), nullable=False, default='Pending')
+    created_at = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
+    update_at = db.Column(db.DateTime, nullable=False, default=datetime.utcnow, onupdate=datetime.utcnow)
     
     # email = db.Column(db.String(70), db.ForeignKey(User.email, onupdate='CASCADE', ondelete='SET NULL'))
     
