@@ -1,8 +1,9 @@
-{% extends "components/viewAuth.html" %}
+{% include "components/head.jinja" %}
+{% include "components/nav.jinja" %}
 
-{% block register %}
-<div class="form mx-auto w-80 mb-8">
-    <form class="" action="/login" method="post">
+<div class="form mx-auto w-80">
+    <h3 class="text-xl font-bold mb-8 mt-8 text-center">Tambah Data Warga</h3>
+    <form class="" action="/dosen" method="post" enctype="multipart/form-data">
         {% for item in nameType %}
         <div class="mt-8 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
             <div class="sm:col-span-6">
@@ -21,8 +22,7 @@
             <button type="submit" class="rounded-md bg-gray-800 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-gray-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-800">Save</button>
         </div>
 
-        <p class="mt-4 text-sm leading-6 text-gray-800">Sudah punya akun? <a href="/login" class="px-1 py-1 text-sm font-semibold text-black hover:text-gray-400">Masuk</a></p>
-
     </form>
 </div>
-{% endblock register %}
+
+{% include "components/foot.jinja" %}
