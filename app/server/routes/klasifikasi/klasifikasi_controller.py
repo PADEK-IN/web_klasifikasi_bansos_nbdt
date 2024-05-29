@@ -49,8 +49,10 @@ def predict(nik):
         selector = SelectKBest(f_classif, k='all')
         X_selected = selector.fit_transform(X, y)
         X_train, X_test, y_train, y_test = train_test_split(X_selected, y, test_size=0.2, random_state=42)
-        model = GaussianNB()
-        model.fit(X_train, y_train)
+        modelNb = GaussianNB()
+        modelNb.fit(X_train, y_train)
+        modelDt = DecisionTreeClassifier(max_depth=4)
+        modelDt.fit(X_train, y_train)
         
         #data Baru
         new_data = np.array([[penghasilan, tanggungan, materialRumah, statusRumah]])
@@ -61,27 +63,38 @@ def predict(nik):
         scaler = StandardScaler()
         df['penghasilan'] = scaler.fit_transform(df[['penghasilan']])
         Z = df[['penghasilan', 'tanggungan', 'kondisi_rumah', 'status_rumah']]
+        
         # Memprediksi kelas untuk data baru
         print(Z["penghasilan"])
-        new_prediction = model.predict(Z)
-        result={"status": "pending", "nama": wargaData["nama"]}
-        print(new_prediction)
-        if new_prediction[0] == 1:
-            result["status"]="Miskin Extreme"
-        elif new_prediction[0] == 0:
-            result["status"]="CBP"
-        elif new_prediction[0] == 2:
-            result["status"]="PKH"
-        elif new_prediction[0] == 3:
-            result["status"]="Tidak Layak"
+        new_prediction_nb = modelNb.predict(Z)
+        new_prediction_dt = modelDt.predict(Z)
+        result={"status_nb": "pending", "status_dt": "pending", "nama": wargaData["nama"]}
+        
+        # nb
+        if new_prediction_nb[0] == 0:
+            result["status_nb"]="Miskin Extreme"
+        elif new_prediction_nb[0] == 1:
+            result["status_nb"]="CBP"
+        elif new_prediction_nb[0] == 2:
+            result["status_nb"]="PKH"
+        elif new_prediction_nb[0] >= 3:
+            result["status_nb"]="Tidak Layak"
         else:
             return False
-        
-        print(new_prediction)
-        print(result["status"])
+        # dt
+        if new_prediction_dt[0] == 0:
+            result["status_dt"]="Miskin Extreme"
+        elif new_prediction_dt[0] == 1:
+            result["status_dt"]="CBP"
+        elif new_prediction_dt[0] == 2:
+            result["status_dt"]="PKH"
+        elif new_prediction_dt[0] >= 3:
+            result["status_dt"]="Tidak Layak"
+        else:
+            return False
 
         # Update data warga
-        warga.jenis = result["status"]
+        warga.jenis = result["status_dt"]
         db.session.commit()
         
         return result
