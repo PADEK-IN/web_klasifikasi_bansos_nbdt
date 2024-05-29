@@ -12,6 +12,6 @@ def warga():
     
     result = warga_controller.allData()
     if not result:
-        return render_template("pages/error/500.jinja")
+        return render_template("pages/error/500.jinja", name="Admin")
     
-    return render_template("pages/warga/list.jinja", data=result)
+    return render_template("pages/warga/list.jinja", name="Admin", data=result)

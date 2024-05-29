@@ -5,4 +5,4 @@ User = Blueprint('user', __name__)
 
 @User.route("/user")
 def user():
-    return render_template("pages/user/list.jinja")
+    return render_template("pages/user/list.jinja", name="Admin")
