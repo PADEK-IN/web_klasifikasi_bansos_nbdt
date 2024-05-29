@@ -21,6 +21,9 @@
             </div>
             <div class="table_section padding_infor_info">
                 <div class="table-responsive-sm">
+                {% if data == "empty" %}
+                <p><em>Maaf, data masih kosong</em></p>
+                {% else %}
                 <table id="example" class="table table-inbox table-hover table-striped text-center" style="width:100%">
                       <thead class="bg-dark text-white text-center">
                         <tr>
@@ -30,6 +33,7 @@
                         </tr>
                       </thead>
                       <tbody>
+                      
                         {% for row in data %}
                           <tr>
                               {% for column in row.values() %}
@@ -39,6 +43,7 @@
                           {% endfor %}
                       </tbody>
                   </table>
+                  {% endif %}
                 </div>
             </div>
           </div>
