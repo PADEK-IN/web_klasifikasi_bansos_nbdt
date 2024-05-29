@@ -80,6 +80,7 @@ def predict(nik):
         print(new_prediction)
         print(result["status"])
 
+        # Update data warga
         warga.jenis = result["status"]
         db.session.commit()
         
