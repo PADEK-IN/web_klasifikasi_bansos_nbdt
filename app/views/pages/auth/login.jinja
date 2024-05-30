@@ -1,6 +1,6 @@
 {% extends "layout/auth.jinja" %}
 
-{% block main %}  
+{% block main %}
 <!-- dashboard inner -->
 <div class="login_section">
     <div class="logo_login">
@@ -9,7 +9,8 @@
         </div>
     </div>
     <div class="login_form">
-        <form>
+        <h3 class="text-center mb-4">Sign In</h3>
+        <form action="/login" method="post">
             <fieldset>
                 <div class="field">
                     <label class="label_field">Email Address</label>
@@ -19,14 +20,13 @@
                     <label class="label_field">Password</label>
                     <input type="password" name="password" placeholder="Password" />
                 </div>
-                <div class="field">
-                    <label class="label_field hidden">hidden label</label>
-                    <label class="form-check-label"><input type="checkbox" class="form-check-input"> Remember Me</label>
-                    <a class="forgot" href="">Forgotten Password?</a>
-                </div>
                 <div class="field margin_0">
                     <label class="label_field hidden">hidden label</label>
                     <button class="main_bt">Sing In</button>
+                </div>
+                <div class="field">
+                    <label class="label_field hidden">hidden label</label>
+                    <label class=""><em>belum punya akun? <a class="text-primary" href="/register"><strong>Sign Up</strong></a></em></label>
                 </div>
             </fieldset>
         </form>
