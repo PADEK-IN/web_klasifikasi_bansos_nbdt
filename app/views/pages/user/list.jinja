@@ -24,30 +24,21 @@
                 <table id="example" class="table table-inbox table-hover table-striped text-center" style="width:100%">
                       <thead class="bg-dark text-white text-center">
                         <tr>
-                            <th><b>No</b></th>
                             <th><b>Nama</b></th>
                             <th><b>Email</b></th>
                             <th><b>Role</b></th>
                         </tr>
                       </thead>
-                      <tbody>
-                        {% set data = [
-                            {
-                                "name": "Anna Bayudi",
-                                "email": "anna@gmail.com",
-                                "role": "user"
-                            }
-                        ] %}
-                        {% for i in range(20) %}
+                      <tbody class="text-left">
+                        {% if data != "empty" %}
                           {% for item in data %}
                             <tr>
-                                <td>{{ i + 1 }}</td>
                                 <td>{{ item.name }}</td>
                                 <td>{{ item.email }}</td>
                                 <td>{{ item.role }}</td>
                             </tr>
                           {% endfor %}
-                        {% endfor %}
+                        {% endif %}
                       </tbody>
                   </table>
                 </div>

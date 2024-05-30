@@ -1,3 +1,22 @@
+def dataUserAll(data):
+    array = []
+
+    for i in data:
+        array.append(dataUser(i))
+
+    return array
+
+
+def dataUser(data):
+    data = {
+        "id": data.id,
+        "name": data.name,
+        "email": data.email,
+        "role": data.role
+    }
+    
+    return data
+
 def dataWargaAll(data):
     array = []
 
@@ -6,14 +25,6 @@ def dataWargaAll(data):
 
     return array
 
-def dataUser(data):
-    data = {
-        "id": data.id,
-        "name": data.name,
-        "email": data.email
-    }
-    
-    return data
 
 def dataWarga(data):
     data = {
