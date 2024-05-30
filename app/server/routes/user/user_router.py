@@ -1,4 +1,4 @@
-from flask import Blueprint, request, render_template, redirect
+from flask import Blueprint, render_template
 from app.server.routes.user import user_controller
 
 User = Blueprint('user', __name__)
