@@ -21,19 +21,23 @@
             </div>
             <div class="table_section padding_infor_info">
                 <div class="table-responsive-sm">
-                {% if data == "empty" %}
-                <p><em>Maaf, data masih kosong</em></p>
-                {% else %}
+                {% if data != "empty" %}
                 <table id="example" class="table table-inbox table-hover table-striped text-center" style="width:100%">
                       <thead class="bg-dark text-white text-center">
                         <tr>
-                            {% for column in data[0].keys() %}
-                                <th>{{ column }}</th>
-                            {% endfor %}
+                            <td>NIK</td>
+                            <td>Nama</td>
+                            <td>Alamat</td>
+                            <td>No RT</td>
+                            <td>Pekerjaan</td>
+                            <td>Penghasilan</td>
+                            <td>Tanggungan</td>
+                            <td>Kondisi Rumah</td>
+                            <td>Status Rumah</td>
+                            <td>Jenis Bantuan</td>
                         </tr>
                       </thead>
                       <tbody>
-                      
                         {% for row in data %}
                           <tr>
                               {% for column in row.values() %}
