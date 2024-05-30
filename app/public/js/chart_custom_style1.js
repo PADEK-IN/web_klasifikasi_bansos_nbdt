@@ -6,88 +6,30 @@
     Website: https://html.design
     Version: 1.0
 -------------------------------------------------------------------*/	
-
      var color = Chart.helpers.color;
 		var barChartData = {
-			labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+			labels: ['Miskin Extreme', 'PKH', 'CBP', 'Bukan Penerima'],
 			datasets: [{
 				type: 'bar',
-				label: 'Dataset 1',
+				label: 'Jumlah',
 			backgroundColor: [
                 'rgba(255, 152, 0, 1)',
                 'rgba(33, 150, 243, 1)',
                 'rgba(255, 87, 34, 1)',
                 'rgba(0, 150, 136, 1)',
-                'rgba(255, 152, 0, 1)',
-                'rgba(21, 40, 60, 1)',
-				'rgba(9, 113, 184, 1)',
 				],
             borderColor: [
                 'rgba(255, 152, 0, 1)',
                 'rgba(103, 58, 183, 1)',
                 'rgba(233, 30, 99, 1)',
                 'rgba(0, 150, 136, 1)',
-                'rgba(255, 152, 0, 1)',
-                'rgba(21, 40, 60, 1)',
-				'rgba(9, 113, 184, 1)',
             ],
             data: [
-				randomScalingFactor(),
-				randomScalingFactor(),
-				randomScalingFactor(),
-				randomScalingFactor(),
-				randomScalingFactor(),
-				randomScalingFactor(),
-				randomScalingFactor()
+				miskin_extreme,
+				pkh,
+				cbp,
+				bukan_penerima,
 			]
-			}, {
-				type: 'line',
-				label: 'Dataset 2',
-				backgroundColor: [
-                     'rgba(30, 208, 133, 0.3)',
-                ],
-                borderColor: [
-                     'rgba(30, 208, 133, 1)',
-                ],
-				data: [
-					randomScalingFactor(),
-					randomScalingFactor(),
-					randomScalingFactor(),
-					randomScalingFactor(),
-					randomScalingFactor(),
-					randomScalingFactor(),
-					randomScalingFactor()
-				]
-			}, {
-				type: 'bar',
-				label: 'Dataset 3',
-				backgroundColor: [
-                     'rgba(255, 87, 34, 1)',
-                     'rgba(103, 58, 183, 1)',
-                     'rgba(233, 30, 99, 1)',
-                     'rgba(0, 150, 136, 1)',
-                     'rgba(255, 152, 0, 1)',
-                     'rgba(21, 40, 60, 1)',
-				     'rgba(9, 113, 184, 1)',
-				],
-                borderColor: [
-                     'rgba(255, 87, 34, 1)',
-                     'rgba(103, 58, 183, 1)',
-                     'rgba(233, 30, 99, 1)',
-                     'rgba(0, 150, 136, 1)',
-                     'rgba(255, 152, 0, 1)',
-                     'rgba(21, 40, 60, 1)',
-				     'rgba(9, 113, 184, 1)',
-                ],
-				data: [
-					randomScalingFactor(),
-					randomScalingFactor(),
-					randomScalingFactor(),
-					randomScalingFactor(),
-					randomScalingFactor(),
-					randomScalingFactor(),
-					randomScalingFactor()
-				]
 			}]
 		};
 
@@ -132,8 +74,8 @@
 				options: {
 					responsive: true,
 					title: {
-						display: false,
-						text: 'Chart.js Combo Bar Line Chart'
+						display: true,
+						text: 'Grafik Data Penerima Bantuan'
 					},
 				}
 			});

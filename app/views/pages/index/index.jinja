@@ -16,12 +16,12 @@
             <div class="full counter_section margin_bottom_30">
               <div class="couter_icon">
                   <div> 
-                    <i class="fa fa-user yellow_color"></i>
+                    <i class="fa fa-leaf yellow_color"></i>
                   </div>
               </div>
               <div class="counter_no">
                   <div>
-                    <p class="total_no">70</p>
+                    <p class="total_no"><span id="miskin_extreme">{{count.miskin_extreme}}</span><sub>/{{count.semua}}</sub></p>
                     <p class="head_couter">Miskin Extreme</p>
                   </div>
               </div>
@@ -31,12 +31,12 @@
             <div class="full counter_section margin_bottom_30">
               <div class="couter_icon">
                   <div> 
-                    <i class="fa fa-clock-o blue1_color"></i>
+                    <i class="fa fa-bolt blue1_color"></i>
                   </div>
               </div>
               <div class="counter_no">
                   <div>
-                    <p class="total_no">35</p>
+                    <p class="total_no"><span id="pkh">{{count.pkh}}</span><sub>/{{count.semua}}</sub></p>
                     <p class="head_couter">PKH</p>
                   </div>
               </div>
@@ -46,12 +46,12 @@
             <div class="full counter_section margin_bottom_30">
               <div class="couter_icon">
                   <div> 
-                    <i class="fa fa-cloud-download green_color"></i>
+                    <i class="fa fa-tree green_color"></i>
                   </div>
               </div>
               <div class="counter_no">
                   <div>
-                    <p class="total_no">40</p>
+                    <p class="total_no"><span id="cbp">{{count.cbp}}</span><sub>/{{count.semua}}</sub></p>
                     <p class="head_couter">CBP</p>
                   </div>
               </div>
@@ -61,13 +61,13 @@
             <div class="full counter_section margin_bottom_30">
               <div class="couter_icon">
                   <div> 
-                    <i class="fa fa-comments-o red_color"></i>
+                    <i class="fa fa-recycle red_color"></i>
                   </div>
               </div>
               <div class="counter_no">
                   <div>
-                    <p class="total_no">30</p>
-                    <p class="head_couter">Tidak Layak</p>
+                    <p class="total_no"><span id="bukan_penerima">{{count.bukan_penerima}}</span><sub>/{{count.semua}}</sub></p>
+                    <p class="head_couter">Bukan Penerima</p>
                   </div>
               </div>
             </div>
@@ -100,5 +100,11 @@
       <!-- end graph -->
   </div>
 </div>
+<script>
+  let miskin_extreme = document.getElementById("miskin_extreme").textContent
+  let pkh = document.getElementById("pkh").textContent
+  let cbp = document.getElementById("cbp").textContent
+  let bukan_penerima = document.getElementById("bukan_penerima").textContent
+</script>
 <!-- end dashboard inner -->
 {% endblock main %}
