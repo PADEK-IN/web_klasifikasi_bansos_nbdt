@@ -3277,9 +3277,9 @@ table.projects tr td:first-child {
 }
 
 .logo_login {
-    background: url('../images/layout_img/login_image.jpg');
-    padding: 50px 0;
-    background-position: center center;
+    background: url('../images/bantuan.jpg');
+    padding: 70px 0;
+    background-position: center top;
     position: relative;
 }
 
