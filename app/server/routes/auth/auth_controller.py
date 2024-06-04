@@ -38,6 +38,7 @@ def login():
 
         data = dataUser(user)
 
+        session["login"] = True
         session["name"] = data["name"]
         session["email"] = data["email"]
 
@@ -48,9 +49,10 @@ def login():
 
 def logout():
     try:
-        session.pop("name", None)
-        session.pop("email", None)
-
+        # session.pop("login", None)
+        # session.pop("name", None)
+        # session.pop("email", None)
+        session.clear()
         return True
     except Exception as e:
         print(e)
