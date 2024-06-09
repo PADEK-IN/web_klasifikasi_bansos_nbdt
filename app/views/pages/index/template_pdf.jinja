@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Pengolahan Bansos</title>
+    <link rel="icon" href="/public/images/favicon.ico" type="ico" />
+    <!-- bootstrap css -->
+    <link rel="stylesheet" href="/public/css/bootstrap.min.css" />
+    <!-- site css -->
+    <link rel="stylesheet" href="/public/css/style.css" />
+    <style>
+        @media print {
+            @page {
+                margin: 20mm;
+            }
+            body {
+                -webkit-print-color-adjust: exact;
+                margin: 0;
+                padding: 0;
+            }
+            .no-print {
+                display: none;
+            }
+            table {
+                width: 100%;
+                table-layout: fixed;
+            }
+            th, td {
+                word-wrap: break-word;
+            }
+        }
+        .kop-surat {
+            margin-bottom: 20px;
+        }
+        .kop-surat .line {
+            border-top: 2px solid #000;
+            margin: 5px 0;
+        }
+        .footer {
+            margin: 50px 50px 10px 50px;
+            width: 200px;
+        }
+        .footer .signature-line {
+            display: block;
+            margin-top: 50px;
+            border-top: 1px solid black;
+        }
+ 
+    </style>
+</head>
+<body>
+    <div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center">
+        <button class="btn btn-primary no-print" onclick="history.back()">Kembali</button>
+        <button class="btn btn-info no-print" onclick="window.print()">Cetak</button>
+    </div>
+        <!-- Kop Surat -->
+        <div class="kop-surat text-center">
+            <h3>Kantor Kelurahan Solok Sipin</h3>
+            <p>Jl. Letkol Slamet Riyadi, Solok Sipin, Kec. Telanaipura, Kota Jambi, Jambi 36124</p>
+            <div class="line"></div>
+            <div class="line"></div>
+        </div>
+
+        <div id="data"></div>
+        <footer class="d-flex justif justify-content-end">
+            <div class="footer">
+                <p>Jambi, <span id="current-date"></span></p>
+                <span class="signature-line"></span>
+            </div>
+        </footer>
+    </div>
+    <script src="/public/js/jquery.min.js"></script>
+    <script src="/public/js/popper.min.js"></script>
+    <script src="/public/js/bootstrap.min.js"></script>
+    <script>
+         function formatDate(date) {
+            const options = { day: '2-digit', month: 'long', year: 'numeric' };
+            return date.toLocaleDateString('id-ID', options);
+        }
+        // Set current date
+        document.getElementById('current-date').textContent = formatDate(new Date());
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const tableData = localStorage.getItem('tableData');
+            if (tableData) {
+                document.getElementById('data').innerHTML = tableData;
+                localStorage.removeItem('tableData'); // Optional: hapus data setelah digunakan
+                window.print(); // Cetak halaman setelah data ditampilkan
+            }
+        });
+    </script>
+
+</body>
+</html>

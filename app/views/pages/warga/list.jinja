@@ -15,23 +15,26 @@
       <div class="col-md-12">
           <div class="white_shd full margin_bottom_30">
             <div class="full graph_head">
-                <div class="heading1 margin_0">
-                  <h2>Semua Data</h2>
-                </div>
+              <div class="d-flex justify-content-between align-items-center">
+                  <h3 class="font-weight-normal">Semua Data</h3>
+                  <button class="btn btn-primary no-print" onclick="sendData()">Cetak</button>
+              </div>
             </div>
             <div class="table_section padding_infor_info">
-                <div class="table-responsive-sm">
-                {% if data != "empty" %}
-                <table id="example" class="table table-inbox table-hover table-striped text-center" style="width:100%">
+                <div id="data" class="table-responsive-sm">
+                  <h4 id="title" class="text-center my-4 d-none">Data Warga Penerima Bantuan</h4>
+                  {% if data != "empty" %}
+                  <table id="example" class="table table-inbox table-hover table-striped text-center" style="width:100%">
                       <thead class="bg-dark text-white text-center">
                         <tr>
+                            <td>No</td>
                             <td>NIK</td>
                             <td>Nama</td>
                             <td>Alamat</td>
                             <td>No RT</td>
                             <td>Pekerjaan</td>
                             <td>Penghasilan</td>
-                            <td>Tanggungan</td>
+                            <td>Tang gungan</td>
                             <td>Kondisi Rumah</td>
                             <td>Status Rumah</td>
                             <td>Jenis Bantuan</td>
@@ -40,11 +43,12 @@
                       <tbody>
                         {% for row in data %}
                           <tr>
+                              <td>{{ loop.index }}</td>
                               {% for column in row.values() %}
                                   <td>{{ column }}</td>
                               {% endfor %}
                           </tr>
-                          {% endfor %}
+                        {% endfor %}
                       </tbody>
                   </table>
                   {% endif %}
@@ -56,4 +60,30 @@
   </div>
 </div>
 <!-- end dashboard inner -->
+
 {% endblock main %}
+
+<!-- <script>
+ function cetak(){
+    $("thead").removeClass("bg-dark text-white")
+    $('#example').DataTable().destroy();
+    const data = $("#data").html()
+
+    fetch('/download', {
+          method: 'POST',
+          headers: {
+                'Content-Type': 'text/plain'
+          },
+          body: data
+    })
+    .then(response => {
+          console.log(response)
+    })
+   .catch(error => {
+          console.error('Error:', error);
+    });
+
+    new DataTable('#example');
+    $("thead").addClass("bg-dark text-white")
+  }
+</script> -->

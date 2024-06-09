@@ -15,12 +15,14 @@
       <div class="col-md-12">
           <div class="white_shd full margin_bottom_30">
             <div class="full graph_head">
-                <div class="heading1 margin_0">
-                  <h2>Data Warga Bukan Penerima Bantuan</h2>
-                </div>
+              <div class="d-flex justify-content-between align-items-center">
+                  <h3 class="font-weight-normal">Data Warga Bukan Penerima Bantuan</h3>
+                  <button class="btn btn-primary no-print" onclick="sendData()">Cetak</button>
+              </div>
             </div>
             <div class="table_section padding_infor_info">
-                <div class="table-responsive-sm">
+                <div id="data" class="table-responsive-sm">
+                <h4 id="title" class="text-center my-4 d-none">Data Warga Bukan Penerima Bantuan</h4>
                 {% if data != "empty" %}
                 <table id="example" class="table table-inbox table-hover table-striped text-center" style="width:100%">
                       <thead class="bg-dark text-white text-center">
