@@ -1,0 +1,39 @@
+{% extends "layout/main.jinja" %}
+
+{% block main %}
+<!-- dashboard inner -->
+
+<div class="midde_cont">
+    <div class="container-fluid">
+        <div class="row column_title">
+            <div class="col-md-12">
+                <div class="page_title mt-3" >
+                    <h2>Hasil Status Bantuan</h2>
+                </div>
+            </div>
+        </div>
+        <div class="my-5 text-center">
+            {% if data.status_nb == "pending" %}
+                <h3 class="mt-4">Pending</h3>
+                <p>Hi {{data.nama | capitalize}}, mohon bersabar ya. Data kamu sedang di proses, harap menunggu yaa....</p>
+            {% else %}
+                <h1 class="mt-4">Metode Naive Bayes</h1>
+                <h3 class="mt-4">Bantuan: {{ data.status_nb }}</h3>
+                <p class="p-0 m-0">Data {{data.nama | capitalize}} berhasil di proses dengan metode <strong>Naive Bayes</strong>.</p>
+            {% endif %}
+        </div>
+        <div class="mt-5 text-center">
+            {% if data.status_dt == "pending" %}
+                <h3 class="mt-4">Pending</h3>
+                <p>Hi {{data.nama | capitalize}}, mohon bersabar ya. Data kamu sedang di proses, harap menunggu yaa....</p>
+            {% else %}
+                <h1 class="mt-4">Metode Decision Tree</h1>
+                <h3 class="mt-4">Bantuan: {{ data.status_dt }}</h3>
+                <p class="p-0 m-0">Data {{data.nama | capitalize}} berhasil di proses dengan metode <strong>Decision Tree</strong>.</p>
+            {% endif %}
+        </div>
+        
+    </div>
+</div>
+<!-- end dashboard inner -->
+{% endblock main %}

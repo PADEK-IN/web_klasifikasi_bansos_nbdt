@@ -1,0 +1,59 @@
+{% extends "layout/main.jinja" %}
+
+{% block main %}  
+<!-- dashboard inner -->
+<div class="midde_cont">
+  <div class="container-fluid">
+      <div class="row column_title">
+        <div class="col-md-12">
+            <div class="page_title mt-3">
+              <h2>Data Warga</h2>
+            </div>
+        </div>
+      </div>
+      <!-- Tabel Start -->
+      <div class="col-md-12">
+          <div class="white_shd full margin_bottom_30">
+            <div class="full graph_head">
+                <div class="heading1 margin_0">
+                  <h2>Data Warga Penerima Bantuan Miskin Extreme</h2>
+                </div>
+            </div>
+            <div class="table_section padding_infor_info">
+                <div class="table-responsive-sm">
+                {% if data != "empty" %}
+                <table id="example" class="table table-inbox table-hover table-striped text-center" style="width:100%">
+                      <thead class="bg-dark text-white text-center">
+                        <tr>
+                            <td>NIK</td>
+                            <td>Nama</td>
+                            <td>Alamat</td>
+                            <td>No RT</td>
+                            <td>Pekerjaan</td>
+                            <td>Penghasilan</td>
+                            <td>Tanggungan</td>
+                            <td>Kondisi Rumah</td>
+                            <td>Status Rumah</td>
+                            <td>Jenis Bantuan</td>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {% for row in data %}
+                          <tr>
+                              {% for column in row.values() %}
+                                  <td>{{ column }}</td>
+                              {% endfor %}
+                          </tr>
+                          {% endfor %}
+                      </tbody>
+                  </table>
+                  {% endif %}
+                </div>
+            </div>
+          </div>
+      </div>
+      <!-- Tabel End -->
+  </div>
+</div>
+<!-- end dashboard inner -->
+{% endblock main %}

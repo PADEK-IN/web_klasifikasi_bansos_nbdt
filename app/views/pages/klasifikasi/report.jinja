@@ -1,0 +1,149 @@
+{% extends "layout/main.jinja" %}
+
+{% block main %}
+<!-- dashboard inner -->
+<div class="midde_cont">
+    <div class="container-fluid">
+        <div class="row column_title">
+            <div class="col-md-12">
+                <div class="page_title mt-3">
+                    <h2>Report Training Model</h2>
+                </div>
+            </div>
+        </div>
+        <div class="row column4 graph">
+            <!-- Naive Bayes -->
+            <div class="col-md-6">
+                <div class="white_shd full margin_bottom_30">
+
+                    <div class="dash_head">
+                        <h3><span>Naive Bayes</span></h3>
+                    </div>
+                    <div class="p-4">
+                        <p>Laporan hasil training data bantuan kelurahan solok sipin menggunakan metode naive bayes
+                        </p>
+                    </div>
+
+                    <div class="full progress_bar_inner">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <!-- Skill Bars -->
+                                <div class="widget_progress_bar pt-0">
+                                    <p class="progress_no">{{nb['acc']}}%</p>
+                                    <p class="progress_head">Akurasi Model</p>
+                                    <!-- Skill Bars -->
+                                    <div>
+                                        <span class="skill" style="width:{{nb['acc']}}%;">Akurasi model
+                                            <span class="info_valume">{{nb['acc']}}%</span></span>
+                                        <div class="progress skill-bar ">
+                                            <div class="progress-bar progress-bar-animated progress-bar-striped"
+                                                role="progressbar" aria-valuenow="{{nb['acc']}}" aria-valuemin="0"
+                                                aria-valuemax="100" style="width: {{nb['acc']}}%;"></div>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <span class="skill" style="width:{{nb['cvMean']}}%;">Mean Cross-Validation Score
+                                            <span class="info_valume">{{nb['cvMean']}}%</span></span>
+                                        <div class="progress skill-bar">
+                                            <div class="progress-bar progress-bar-animated progress-bar-striped"
+                                                role="progressbar" aria-valuenow="{{nb['cvMean']}}" aria-valuemin="0"
+                                                aria-valuemax="100" style="width: {{nb['cvMean']}}%;"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="nb-report" class="text-center d-none">
+                                    <div class="pt-2">
+                                        <h6>Classification Report</h6>
+                                        <pre>{{nb["classReport"]}}</pre>
+                                    </div>
+                                    <div class="pt-2">
+                                        <h6>Confusion Matrix</h6>
+                                        <pre>{{nb["confMatrix"]}}</pre>
+                                    </div>
+                                    <div class="pt-2">
+                                        <h6>Cross Validation Score</h6>
+                                        <pre>{{nb["cv"]}}</pre>
+                                    </div>
+                                </div>
+                                <div class="read_more">
+                                    <div class="center"><button class="main_bt read_bt" onclick="showMore('nb-report')">Read More</button></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Decision Tree -->
+            <div class="col-md-6">
+                <div class="white_shd full margin_bottom_30">
+
+                    <div class="dash_head">
+                        <h3><span>Decision Tree</span></h3>
+                    </div>
+                    <div class="p-4">
+                        <p>Laporan hasil training data bantuan kelurahan solok sipin menggunakan metode decision tree
+                        </p>
+                    </div>
+
+                    <div class="full progress_bar_inner">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <!-- Skill Bars -->
+                                <div class="widget_progress_bar pt-0">
+                                    <p class="progress_no">{{dt['acc']}}%</p>
+                                    <p class="progress_head">Akurasi Model</p>
+                                    <!-- Skill Bars -->
+                                    <div>
+                                        <span class="skill" style="width:{{dt['acc']}}%;">Akurasi model
+                                            <span class="info_valume">{{dt['acc']}}%</span></span>
+                                        <div class="progress skill-bar ">
+                                            <div class="progress-bar progress-bar-animated progress-bar-striped"
+                                                role="progressbar" aria-valuenow="{{dt['acc']}}" aria-valuemin="0"
+                                                aria-valuemax="100" style="width: {{dt['acc']}}%;"></div>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <span class="skill" style="width:{{dt['cvMean']}}%;">Mean Cross-Validation Score
+                                            <span class="info_valume">{{dt['cvMean']}}%</span></span>
+                                        <div class="progress skill-bar">
+                                            <div class="progress-bar progress-bar-animated progress-bar-striped"
+                                                role="progressbar" aria-valuenow="{{dt['cvMean']}}" aria-valuemin="0"
+                                                aria-valuemax="100" style="width: {{dt['cvMean']}}%;"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="dt-report" class="text-center d-none">
+                                    <div class="pt-2">
+                                        <h6>Classification Report</h6>
+                                        <pre>{{dt["classReport"]}}</pre>
+                                    </div>
+                                    <div class="pt-2">
+                                        <h6>Confusion Matrix</h6>
+                                        <pre>{{dt["confMatrix"]}}</pre>
+                                    </div>
+                                    <div class="pt-2">
+                                        <h6>Cross Validation Score</h6>
+                                        <pre>{{dt["cv"]}}</pre>
+                                    </div>
+                                </div>
+                                <div class="read_more">
+                                    <div class="center"><button class="main_bt read_bt" onclick="showMore('dt-report')">Read More</button></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<!-- end dashboard inner -->
+
+<script>
+    function showMore(id) {
+        var element = document.getElementById(id);
+        element.classList.toggle('d-none');
+    }
+</script>
+{% endblock main %}

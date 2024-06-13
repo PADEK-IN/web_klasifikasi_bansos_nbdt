@@ -1,47 +1,71 @@
-from flask import Blueprint, request, render_template, redirect
+import os
+from flask import Blueprint, render_template, redirect, session
+# import pandas as pd
 from app.server.routes.warga import warga_controller
 
 Warga = Blueprint('warga', __name__)
 
-@Warga.route("/", methods=["GET", "POST"])
-def user():
-    if request.method == "GET":
-        # mhs = MhsCtrl.allData()
-        return render_template("pages/warga/list.jinja")
-    elif request.method == "POST":
-        # MhsCtrl.create()
-        return redirect('/warga')
+@Warga.route("/")
+def warga():
+    if 'login' in session:
+        # df = pd.read_excel('dataset_nonlabel_test.xlsx')
+        # data = df.to_dict(orient='records')
+        result = warga_controller.allData()
+        if not result:
+            return render_template("pages/error/500.jinja", name=session['name'])
+        return render_template("pages/warga/list.jinja", name=session['name'], data=result)
     else:
-        return render_template("pages/error/400.jinja")
+        return redirect('/login')
+
+@Warga.route("/miskin-extreme")
+def miskinextreme():
+    if 'login' in session:
+        result = warga_controller.allDataByJenis("miskin extreme")
+        if not result:
+            return render_template("pages/error/500.jinja", name=session['name'])
+        return render_template("pages/warga/miskin_extreme.jinja", name=session['name'], data=result)
+    else:
+        return redirect('/login')
     
-# @Warga.route("/user/add", methods=["GET"])
-# def addMahasiswa():
-#     if request.method == "GET":
-#         # nameType = [
-#         #     {"type": "text", "name": "nim", "text": "NIM"},
-#         #     {"type": "text", "name": "nama", "text": "Nama"},
-#         #     {"type": "text", "name": "phone", "text": "No Telepon"},
-#         #     {"type": "text", "name": "alamat", "text": "Alamat"},
-#         # ]
-#         # dosens = DosenCtrl.allData()
-#         return render_template("pages/user/add.jinja")
-#     else:
-#         return render_template("pages/error/400.jinja")
+@Warga.route("/pkh")
+def pkh():
+    if 'login' in session:
+        result = warga_controller.allDataByJenis("pkh")
+        if not result:
+            return render_template("pages/error/500.jinja", name=session['name'])
+        return render_template("pages/warga/pkh.jinja", name=session['name'], data=result)
+    else:
+        return redirect('/login')
     
-# @Warga.route("/user/<id>", methods=["GET"])
-# def detailMhs(id):
-#     # MhsCtrl.detail(id)
-#     return render_template("pages/user/detail.jinja")
+@Warga.route("/cbp")
+def cbp():
+    if 'login' in session:
+        result = warga_controller.allDataByJenis("cbp")
+        if not result:
+            return render_template("pages/error/500.jinja", name=session['name'])
+        return render_template("pages/warga/cbp.jinja", name=session['name'], data=result)
+    else:
+        return redirect('/login')
     
-# @Warga.route("/user/edit/<id>", methods=["GET", "POST"])
-# def editMhs(id):
-#     if request.method == "GET":
-#         return "Form Edit Data"
-#     elif request.method == "POST":
-#         return MhsCtrl.edit(id)
-#     else:
-#         return render_template("pages/error/400.jinja")
+@Warga.route("/bukan-penerima")
+def bukan_penerima():
+    if 'login' in session:
+        result = warga_controller.allDataByJenis("tidak layak")
+        if not result:
+            return render_template("pages/error/500.jinja", name=session['name'])
+        return render_template("pages/warga/bukan_penerima.jinja", name=session['name'], data=result)
+    else:
+        return redirect('/login')
     
-# @Warga.route("/user/delete/<id>", methods=["GET"])
-# def deleteMhs(id):
-#     return MhsCtrl.delete(id)
+@Warga.route("/seeder")
+def seeder():
+    if 'login' in session:
+        # Menentukan path file Excel relatif terhadap root project
+        file_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), '../../../../dataset.xlsx')
+        seed = warga_controller.seeder(file_path)
+        if not seed:
+            return render_template("pages/error/500.jinja", name=session['name'])
+        
+        return redirect("/warga")
+    else:
+        return redirect('/login')

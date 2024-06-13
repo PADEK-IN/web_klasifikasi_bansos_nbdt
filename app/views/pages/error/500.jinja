@@ -1,11 +1,19 @@
-{% include "components/head.jinja" %}
-{% include "components/nav.jinja" %}
+{% extends "layout/main.jinja" %}
 
-<div class="alert alert-danger flex flex-col items-center gap-5" role="alert">
-    <h4 class="alert-heading font-bold text-2xl">500 Server Error</h4>
-    <img src="{{ url_for('static',filename='images/sorry.gif')}}" alt="error-images" width="15%">
-    <p class="font-bold text-lg">{{ message | default("Opps sorry, Internal Server Error") }}</p>
-    <button class="mt-5 p-2 text center rounded-lg bg-gray-500 text-white" onclick="history.back()">Kembali</button>
+{% block main %}  
+
+<div class="center verticle_center full_height">
+    <div class="error_page">
+        <div class="center">
+            <div class="error_icon text-center">
+                <img class="img-responsive" src="/public/images/res.gif" alt="error-img" style="width: 60%;">
+            </div>
+        </div>
+        <br>
+        <h3>Server Error !</h3>
+        <P>{{ message | default("Opps sorry, Internal Server Error") }}</P>
+        <div class="center"><button class="main_bt" onclick="history.back()">Kembali</button></div>
+    </div>
 </div>
 
-{% include "components/foot.jinja" %}
+{% endblock main %}

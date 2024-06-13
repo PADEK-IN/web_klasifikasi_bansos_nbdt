@@ -1,36 +1,38 @@
-from flask import Blueprint, render_template, request, redirect
+from flask import Blueprint, render_template, request, redirect, session
 from app.server.routes.auth import auth_controller
 
-# Auth = Blueprint('auth', __name__, template_folder="../../../views") <-- jika ingin menginisialisasi sendiri root folderya
 Auth = Blueprint('auth', __name__)
-
-@Auth.route('/')
-def index():
-    return render_template("index.jinja", title="Flask and Jinja")
 
 @Auth.route('/register', methods=["GET", "POST"])
 def register():
-    nameType = [
-        {"type": "text", "name":"name", "text": "Name"},
-        {"type": "email", "name":"email", "text": "Email"},
-        {"type": "password", "name":"password", "text": "Password"},
-        {"type": "password", "name":"confirmPassword", "text": "Confirm Password"}
-    ]
-    if request.method == "GET":
-        return render_template('pages/auth/register.jinja', title="Register", nameType=nameType)
+    if 'login' in session:
+        return redirect('/')
     else:
-        auth_controller.register()
-        return redirect("/login")
+        if request.method == "GET":
+            return render_template('pages/auth/register.jinja')
+        if request.method == "POST":
+            regis = auth_controller.register()
+            if not regis:
+                return render_template("pages/error/auth500.jinja")
+            return redirect("/login")
 
 @Auth.route("/login", methods=["GET", "POST"])
 def login():
-    if request.method == "GET":
-        return render_template('pages/auth/login.jinja', title="Login")
+    if 'login' in session:
+        return redirect('/')
     else:
-        auth_controller.login()
-        return render_template("index.jinja", title="Flask and Jinja")
+        if request.method == "GET":
+            return render_template('pages/auth/login.jinja')
+        if request.method == "POST":
+            signin = auth_controller.login()
+            if not signin:
+                return render_template("pages/error/auth500.jinja")
+            return redirect("/")
 
-@Auth.route("/logout", methods=["GET"])
+@Auth.route("/logout")
 def logout():
-    auth_controller.logout()
-    return redirect("/login")
+    if 'login' in session:
+        auth_controller.logout()
+        return redirect("/login")
+    else:
+        return redirect('/login')

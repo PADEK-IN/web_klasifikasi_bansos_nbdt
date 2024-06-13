@@ -1,9 +1,110 @@
-{% include "components/head.jinja" %}
-{% include "components/nav.jinja" %}
+{% extends "layout/main.jinja" %}
 
-<div class="text-center mt-10">
-    <h1 class="text-3xl font-bold mb-2 mt-2">{{message}}</h1>
-    <img class="mx-auto" width="250px" src="{{ url_for('static', filename='images/flask.png')}}">
+{% block main %}  
+<!-- dashboard inner -->
+<div class="midde_cont">
+  <div class="container-fluid">
+      <div class="row column_title">
+        <div class="col-md-12">
+            <div class="page_title mt-3">
+              <h2>Dashboard</h2>
+            </div>
+        </div>
+      </div>
+      <div class="row column1">
+        <div class="col-md-6 col-lg-3">
+            <div class="full counter_section margin_bottom_30">
+              <div class="couter_icon">
+                  <div> 
+                    <i class="fa fa-leaf yellow_color"></i>
+                  </div>
+              </div>
+              <div class="counter_no">
+                  <div>
+                    <p class="total_no"><span id="miskin_extreme">{{count.miskin_extreme}}</span><sub>/{{count.semua}}</sub></p>
+                    <p class="head_couter">Miskin Extreme</p>
+                  </div>
+              </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+            <div class="full counter_section margin_bottom_30">
+              <div class="couter_icon">
+                  <div> 
+                    <i class="fa fa-bolt blue1_color"></i>
+                  </div>
+              </div>
+              <div class="counter_no">
+                  <div>
+                    <p class="total_no"><span id="pkh">{{count.pkh}}</span><sub>/{{count.semua}}</sub></p>
+                    <p class="head_couter">PKH</p>
+                  </div>
+              </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+            <div class="full counter_section margin_bottom_30">
+              <div class="couter_icon">
+                  <div> 
+                    <i class="fa fa-tree green_color"></i>
+                  </div>
+              </div>
+              <div class="counter_no">
+                  <div>
+                    <p class="total_no"><span id="cbp">{{count.cbp}}</span><sub>/{{count.semua}}</sub></p>
+                    <p class="head_couter">CBP</p>
+                  </div>
+              </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+            <div class="full counter_section margin_bottom_30">
+              <div class="couter_icon">
+                  <div> 
+                    <i class="fa fa-recycle red_color"></i>
+                  </div>
+              </div>
+              <div class="counter_no">
+                  <div>
+                    <p class="total_no"><span id="bukan_penerima">{{count.bukan_penerima}}</span><sub>/{{count.semua}}</sub></p>
+                    <p class="head_couter">Bukan Penerima</p>
+                  </div>
+              </div>
+            </div>
+        </div>
+      </div>
+
+      <!-- graph -->
+      <div class="row column2 graph margin_bottom_30">
+        <div class="col-md-l2 col-lg-12">
+            <div class="white_shd full">
+              <div class="full graph_head">
+                  <div class="heading1 margin_0">
+                    <h2>Grafik Warga Penerima Bantuan Kel. Solok Sipin</h2>
+                  </div>
+              </div>
+              <div class="full graph_revenue">
+                  <div class="row">
+                    <div class="col-md-12">
+                        <div class="content">
+                          <div class="area_chart">
+                              <canvas height="120" id="canvas"></canvas>
+                          </div>
+                        </div>
+                    </div>
+                  </div>
+              </div>
+            </div>
+        </div>
+      </div>
+      <!-- end graph -->
+  </div>
 </div>
-
-{% include "components/foot.jinja" %}
+<script>
+  let miskin_extreme = document.getElementById("miskin_extreme").textContent
+  let pkh = document.getElementById("pkh").textContent
+  let cbp = document.getElementById("cbp").textContent
+  let bukan_penerima = document.getElementById("bukan_penerima").textContent
+</script>
+<!-- end dashboard inner -->
+{% endblock main %}

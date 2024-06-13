@@ -12,4 +12,4 @@ migrate = Migrate(app, db)
 
 @app.errorhandler(404)
 def page_not_found(e):
-    return render_template('pages/error/404.html'), 404
+    return render_template('pages/error/404.jinja'), 404

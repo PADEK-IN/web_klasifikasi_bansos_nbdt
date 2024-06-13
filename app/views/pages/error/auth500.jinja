@@ -1,0 +1,19 @@
+{% extends "layout/auth.jinja" %}
+
+{% block main %}  
+
+<div class="center verticle_center full_height">
+    <div class="error_page">
+        <div class="center">
+            <div class="error_icon text-center">
+                <img class="img-responsive" src="/public/images/res.gif" alt="error-img" style="width: 60%;">
+            </div>
+        </div>
+        <br>
+        <h3>Bad Request !</h3>
+        <P>{{ message | default("Sorry, your request invalid") }}</P>
+        <div class="center"><button class="main_bt" onclick="history.back()">Kembali</button></div>
+    </div>
+</div>
+
+{% endblock main %}

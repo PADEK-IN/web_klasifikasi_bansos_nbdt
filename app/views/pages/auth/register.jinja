@@ -1,28 +1,41 @@
-{% extends "components/viewAuth.jinja" %}
+{% extends "layout/auth.jinja" %}
 
-{% block register %}
-<div class="form mx-auto w-80 mb-8">
-    <form class="" action="/login" method="post">
-        {% for item in nameType %}
-        <div class="mt-8 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
-            <div class="sm:col-span-6">
-                <label for={{item.name}} class="block text-sm font-medium leading-6 text-gray-900">{{item.text}}</label>
-                <div class="mt-2">
-                    <div class="flex rounded-sm shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-gray-800 sm:max-w-md">
-                        <input type="{{item.type}}" name={{item.name}} id={{item.name}} autocomplete={{item.name}} class="block flex-1 border-0 bg-transparent py-1.5 pl-2 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6" placeholder="Input {{item.text}}">
-                    </div>
+{% block main %}
+<!-- dashboard inner -->
+<div class="login_section">
+    <div class="logo_login">
+        <div class="center">
+            <img width="50px" src="/public/images/logo/logo_jambii.png" alt="#" />
+            <span class="display-4 text-white"> Kelurahan Solok Sipin</span>
+        </div>
+    </div>
+    <div class="login_form">
+        <h3 class="text-center mb-4">Sign Up</h3>
+        <form action="/register" method="post">
+            <fieldset>
+                <div class="field">
+                    <label class="label_field">Nama</label>
+                    <input type="text" name="name" placeholder="Nama Lengkap" required />
                 </div>
-            </div>
-        </div>
-        {% endfor %}
-
-        <div class="mt-6 flex items-center justify-end gap-x-6">
-            <button type="button" class="text-sm font-semibold leading-6 text-gray-900" onclick="history.back()">Cancel</button>
-            <button type="submit" class="rounded-md bg-gray-800 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-gray-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-800">Save</button>
-        </div>
-
-        <p class="mt-4 text-sm leading-6 text-gray-800">Sudah punya akun? <a href="/login" class="px-1 py-1 text-sm font-semibold text-black hover:text-gray-400">Masuk</a></p>
-
-    </form>
+                <div class="field">
+                    <label class="label_field">Email Address</label>
+                    <input type="email" name="email" placeholder="E-mail" required />
+                </div>
+                <div class="field">
+                    <label class="label_field">Password</label>
+                    <input type="password" name="password" placeholder="Password" required />
+                </div>
+                <div class="field margin_0">
+                    <label class="label_field hidden">hidden label</label>
+                    <button type="submit" class="main_bt">Sing Up</button>
+                </div>
+                <div class="field">
+                    <label class="label_field hidden">hidden label</label>
+                    <label class=""><em>sudah punya akun? <a class="text-primary" href="/login"><strong>Sign In</strong></a></em></label>
+                </div>
+            </fieldset>
+        </form>
+    </div>
 </div>
-{% endblock register %}
+<!-- end dashboard inner -->
+{% endblock main %}

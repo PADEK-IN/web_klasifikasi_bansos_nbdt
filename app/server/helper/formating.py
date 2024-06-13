@@ -1,39 +1,43 @@
-def dataMhs(data):
+def dataUserAll(data):
     array = []
 
     for i in data:
-        array.append(mhs(i))
+        array.append(dataUser(i))
 
     return array
 
-def mhs(data):
-    data = {
-        "id": data.id,
-        "nim": data.nim,
-        "nama": data.nama,
-        "phone": data.phone,
-        "alamat": data.alamat,
-    }
-
-    return data
-
-def detailMhs(mhs, dosen1, dosen2):
-    data = {
-        "id": mhs.id,
-        "nim": mhs.nim,
-        "nama": mhs.nama,
-        "phone": mhs.phone,
-        "alamat": mhs.alamat,
-        "dosen_satu": dosen1,
-        "dosen_dua": dosen2,
-    }
-    return data
 
 def dataUser(data):
     data = {
         "id": data.id,
         "name": data.name,
-        "email": data.email
+        "email": data.email,
+        "role": data.role
+    }
+    
+    return data
+
+def dataWargaAll(data):
+    array = []
+
+    for i in data:
+        array.append(dataWarga(i))
+
+    return array
+
+
+def dataWarga(data):
+    data = {
+        "nik":data.nik,
+        "nama":data.nama,
+        "alamat":data.alamat,
+        "no_rt":data.no_rt,
+        "pekerjaan":data.pekerjaan,
+        "penghasilan":data.penghasilan,
+        "tanggungan":data.tanggungan,
+        "kondisi_rumah":data.kondisi_rumah,
+        "status_rumah":data.status_rumah,
+        "jenis":data.jenis
     }
     
     return data

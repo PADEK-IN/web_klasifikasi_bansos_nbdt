@@ -1,5 +1,4 @@
-from flask import request
-from flask import session
+from flask import request, session
 from app.server import db
 from app.server.model.user import User
 from app.server.helper import response
@@ -11,10 +10,6 @@ def register():
         name = request.form.get("name")
         email = request.form.get("email")
         password = request.form.get("password")
-        confirmPassword = request.form.get("confirmPassword")
-
-        if password != confirmPassword:
-            return response.badReq([], "Maaf password yang anda masukkan tidak sama")
 
         newUser = User(name=name, email=email)
         newUser.setPassword(password)
@@ -22,10 +17,10 @@ def register():
         db.session.add(newUser)
         db.session.commit()
 
-        return response.successCreated("Berhasil registrasi")
+        return True
     except Exception as e:
         print(e)
-        return response.serverError()
+        return False
 
 
 def login():
@@ -43,24 +38,22 @@ def login():
 
         data = dataUser(user)
 
-        session["id"] = data["id"]
+        session["login"] = True
+        session["name"] = data["name"]
         session["email"] = data["email"]
 
-        result = {"data": data}
-
-        return response.success(result, "Yeay anda berhasil login")
+        return True
     except Exception as e:
         print(e)
-        return response.serverError()
-
+        return False
 
 def logout():
     try:
-        session.pop("id", None)
-        session.pop("email", None)
-
+        # session.pop("login", None)
+        # session.pop("name", None)
+        # session.pop("email", None)
+        session.clear()
         return True
-        # return response.success(None, "Anda berhasil logout")
     except Exception as e:
         print(e)
-        return response.serverError()
+        return False

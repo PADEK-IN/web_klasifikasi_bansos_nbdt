@@ -1,0 +1,45 @@
+<nav id="sidebar">
+    <div class="sidebar_blog_1" id="sidebarCollapse">
+      <div class="sidebar-header">
+          <div class="logo_section">
+            <a href="#"><img class="logo_icon img-responsive" src="/public/images/logo/logo_jambii.png" alt="#" /></a>
+          </div>
+      </div>
+      <div class="sidebar_user_info">
+          <a href="#">
+            <div class="icon_setting"></div>
+            <div class="user_profle_side">
+              <div><img width="70px" class="img-responsive" src="/public/images/logo/logo_jambii.png" alt="#"/></div>
+              <div class="user_info">
+                  <h6>{{name}}</h6>
+                  <p><span class="online_animation"></span> Online</p>
+              </div>
+            </div>
+          </a>
+      </div>
+    </div>
+    <div class="sidebar_blog_2">
+      <h4>Menu</h4>
+      <ul class="list-unstyled components">
+          <li><a href="/"><i class="fa fa-dashboard yellow_color"></i> <span>Dashboard</span></a></li>    
+          <li><a href="/user"><i class="fa fa-user purple_color2"></i> <span>User</span></a></li>
+          <li>
+            <a href="#warga" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-users green_color"></i><span>Data Warga</span></a>
+            <ul class="collapse list-unstyled" id="warga">
+                <li><a href="/warga"> <span>Semua Data</span></a></li>
+                <li><a href="/warga/miskin-extreme"> <span>Bantuan Miskin Extreme</span></a></li>
+                <li><a href="/warga/pkh"> <span>Bantuan PKH</span></a></li>
+                <li><a href="/warga/cbp"> <span>Bantuan CBP</span></a></li>
+                <li><a href="/warga/bukan-penerima"> <span>Bukan Penerima Bantuan</span></a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="#klasifikasi" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-object-group blue2_color"></i> <span>Klasifikasi</span></a>
+            <ul class="collapse list-unstyled" id="klasifikasi">
+                <li><a href="/klasifikasi/report/training">> <span>Hasil Training</span></a></li>
+                <li><a href="/klasifikasi/prediksi">> <span>Prediksi</span></a></li>
+            </ul>
+          </li>
+      </ul>
+    </div>
+</nav>
