@@ -61,7 +61,7 @@ def bukan_penerima():
 def seeder():
     if 'login' in session:
         # Menentukan path file Excel relatif terhadap root project
-        file_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), '../../../../dataset.xlsx')
+        file_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), '../../../../revisi_dataset.xlsx')
         seed = warga_controller.seeder(file_path)
         if not seed:
             return render_template("pages/error/500.jinja", name=session['name'])

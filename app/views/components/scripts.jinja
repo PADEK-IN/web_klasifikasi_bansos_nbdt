@@ -23,11 +23,25 @@
       <script src="/public/js/custom.js"></script>
 
       <!-- Data Table JS CDN -->
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/js/bootstrap.min.js"></script>
-      <script src="https://cdn.datatables.net/2.0.8/js/dataTables.js"></script>
-      <script src="https://cdn.datatables.net/2.0.8/js/dataTables.bootstrap4.js"></script>
+      <script src="/public/js/dataTables.js"></script>
+      <script src="/public/js/dataTables.bootstrap4.js"></script>
       <script>
-            new DataTable('#example');
+            
+            let table = new DataTable('#example');
+            function sendData() {
+                  $("table").removeClass("table-hover");
+                  $("thead").removeClass("text-white");
+                  $("thead").addClass("font-weight-bold");
+                  $("#title").removeClass("d-none");
+                  table.destroy();
+                  const tableHTML = document.getElementById('data').outerHTML;
+                  localStorage.setItem('tableData', tableHTML);
+                  new DataTable('#example');
+                  $("#title").addClass("d-none");
+                  $("table").addClass("table-hover");
+                  $("thead").addClass("text-white");
+                  $("thead").removeClass("font-weight-bold");
+                  window.location.href = '/preview';
+            }
       </script>
       
