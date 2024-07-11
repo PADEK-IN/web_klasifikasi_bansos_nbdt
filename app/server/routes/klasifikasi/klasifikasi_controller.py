@@ -26,7 +26,7 @@ def predict(nik):
         statusRumah = get_bobot_status_rumah(wargaData["status_rumah"])
         
         # Train model
-        data = pd.read_excel('dataset_nonlabel_test.xlsx')
+        data = pd.read_excel('revisi_dataset_clean.xlsx')
 
         X = data.iloc[:, [4,5,6,7,8]].values
         y = data.iloc[:, -1].values

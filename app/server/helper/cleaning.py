@@ -7,7 +7,7 @@ bobot_pekerjaan = {
     'ojek online': 5,
     'cuci piring': 6,
     'serabutan': 7,
-    'karyawan swasta': 7
+    'karyawan swasta': 8
 }
 
 bobot_penghasilan = {
