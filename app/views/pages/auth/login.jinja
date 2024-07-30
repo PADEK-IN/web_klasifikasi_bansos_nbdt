@@ -11,7 +11,7 @@
     </div>
     <div class="login_form">
         <h3 class="text-center mb-4">Sign In</h3>
-        <form action="/login" method="post">
+        <form>
             <fieldset>
                 <div class="field">
                     <label class="label_field">Email Address</label>
@@ -23,7 +23,7 @@
                 </div>
                 <div class="field margin_0">
                     <label class="label_field hidden">hidden label</label>
-                    <button class="main_bt">Sing In</button>
+                    <button type="button" onclick="login()" class="main_bt">Sing In</button>
                 </div>
                 <div class="field">
                     <label class="label_field hidden">hidden label</label>
@@ -33,5 +33,26 @@
         </form>
     </div>
 </div>
+<script>
+    function login() {
+        let email = document.querySelector('input[name="email"]').value;
+        let password = document.querySelector('input[name="password"]').value;
+        fetch('/login', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({email, password})
+        }).then(res => res.json())
+            .then(res => {
+                if (res.status == 'success') {
+                    alert('Login berhasil');
+                    return window.location.href = '/';
+                } else {
+                    alert(res.message);
+                }
+        })
+    }
+</script>
 <!-- end dashboard inner -->
 {% endblock main %}
