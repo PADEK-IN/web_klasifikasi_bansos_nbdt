@@ -1,4 +1,5 @@
 from flask import Blueprint, render_template, request, redirect, session
+from app.server.helper import response
 from app.server.routes.auth import auth_controller
 
 Auth = Blueprint('auth', __name__)
@@ -25,9 +26,10 @@ def login():
             return render_template('pages/auth/login.jinja')
         if request.method == "POST":
             signin = auth_controller.login()
+            print(signin)
             if not signin:
-                return render_template("pages/error/auth500.jinja")
-            return redirect("/")
+                return response.serverError([], "Internal Server Error")
+            return response.success([], "Berhasil login")
 
 @Auth.route("/logout")
 def logout():

@@ -25,16 +25,18 @@ def register():
 
 def login():
     try:
-        email = request.form.get("email")
-        password = request.form.get("password")
-
+        email = request.json.get("email")
+        password = request.json.get("password")
+        print(email, password)
         user = User.query.filter_by(email=email).first()
 
         if not user:
-            return response.badReq([], "Maaf user tidak ditemukan")
+            # return response.badReq([], "Maaf user tidak ditemukan")
+            return False
 
         if not user.verifyPassword(password):
-            return response.unAuth("Maaf password yang anda masukkan salah")
+            # return response.unAuth("Maaf password yang anda masukkan salah")
+            return False
 
         data = dataUser(user)
 
