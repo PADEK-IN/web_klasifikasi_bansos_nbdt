@@ -24,7 +24,7 @@
                 <div id="data" class="table-responsive-sm">
                   <h4 id="title" class="text-center my-4 d-none">Data Warga Penerima Bantuan</h4>
                   {% if data != "empty" %}
-                  <table id="example" class="table table-inbox table-hover table-striped text-center" style="width:100%">
+                  <table id="example" class="table table-inbox table-hover table-striped text-center" style="width:100%;">
                       <thead class="bg-dark text-white text-center">
                         <tr>
                             <td>No</td>
@@ -40,7 +40,7 @@
                             <td>Jenis Bantuan</td>
                         </tr>
                       </thead>
-                      <tbody>
+                      <tbody style="color:black">
                         {% for row in data %}
                           <tr>
                               <td>{{ loop.index }}</td>
