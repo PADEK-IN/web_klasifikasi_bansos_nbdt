@@ -47,11 +47,15 @@
             .then(res => {
                 if (res.status == 'success') {
                     alert('Login berhasil');
-                    return window.location.href = '/';
                 } else {
                     alert(res.message);
                 }
-        })
+        }).catch(err => {
+            console.log(err);
+            alert('Terjadi kesalahan');
+        }).finally(() => {
+            window.location.reload();
+        });
     }
 </script>
 <!-- end dashboard inner -->
